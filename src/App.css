@@ -1,0 +1,165 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+body{
+     width:100vw;
+     place-items: baseline;
+}
+
+ #root {
+     width:100vw;
+     background-color: #ececec;
+}
+ @keyframes rotate-3d{
+     to {
+         transform: rotateY(360deg);
+    }
+}
+ .rotate3d{
+     animation-name: rotate-3d;
+     animation-iteration-count: infinite;
+     animation-duration: 1s;
+     animation-timing-function: linear;
+}
+ @keyframes show-left{
+     0% {
+         transform: translateX(-100%);
+    }
+     100% {
+         transform: translateX(0%);
+    }
+}
+ @keyframes hide-left{
+     0% {
+         transform: translateX(0%);
+    }
+     100% {
+         transform: translateX(-100%);
+    }
+}
+ .show-left{
+     animation-name: show-left;
+     animation-duration: 500ms;
+     animation-timing-function: ease-in-out;
+     animation-iteration-count: 1;
+}
+ .hide-left{
+     animation-name: hide-left;
+     animation-duration: 500ms;
+     animation-timing-function: ease-in-out;
+     animation-iteration-count: 1;
+}
+ @keyframes show-right{
+     0% {
+         transform: translateX(100%);
+    }
+     100% {
+         transform: translateX(0%);
+    }
+}
+ @keyframes hide-right{
+     0% {
+         transform: translateX(0%);
+    }
+     100% {
+         transform: translateX(100%);
+    }
+}
+ .show-right{
+     animation-name: show-right;
+     animation-duration: 500ms;
+     animation-timing-function: ease-in-out;
+     animation-iteration-count: 1;
+}
+ .hide-right{
+     animation-name: hide-right;
+     animation-duration: 500ms;
+     animation-timing-function: ease-in-out;
+     animation-iteration-count: 1;
+}
+ @keyframes show-bottom{
+     0% {
+         transform: translateY(100%);
+    }
+     100% {
+         transform: translateY(0%);
+    }
+}
+ @keyframes hide-bottom{
+     0% {
+         transform: translateY(0%);
+    }
+     100% {
+         transform: translateY(100%);
+    }
+}
+ .show-bottom{
+     animation-name: show-bottom;
+     animation-duration: 500ms;
+     animation-timing-function: ease-in-out;
+     animation-iteration-count: 1;
+}
+ .hide-bottom{
+     animation-name: hide-bottom;
+     animation-duration: 500ms;
+     animation-timing-function: ease-in-out;
+     animation-iteration-count: 1;
+}
+ @keyframes fadeInBlur {
+     0% {
+        /* Start with a strong blur */
+         backdrop-filter: blur(20px);
+         -webkit-backdrop-filter: blur(20px);
+    }
+     100% {
+        /* End with no blur */
+         backdrop-filter: blur(0px);
+         -webkit-backdrop-filter: blur(0px);
+    }
+}
+ .animate-blur-in {
+     animation: fadeInBlur 2s ease-out forwards;
+}
+ @keyframes dialog-open {
+     0% {
+         opacity: 0;
+         transform: scale(0.95) translateY(10px);
+    }
+     100% {
+         opacity: 1;
+         transform: scale(1) translateY(0);
+    }
+}
+ .animate-dialog-in {
+     animation: dialog-open 0.2s cubic-bezier(0.4, 0, 0.2, 1) forwards;
+}
+ .continuous-slide-track {
+     display: flex;
+     animation-name: slide-continuous;
+     animation-duration: 6s;
+     animation-timing-function: linear;
+     animation-iteration-count: infinite;
+}
+
+ .hide-scrollbars {
+     overflow-x: scroll;
+}
+
+ .hide-x-scrollbar {
+     -ms-overflow-style: none;
+     scrollbar-width: none;
+}
+
+ .hide-x-scrollbar::-webkit-scrollbar {
+     display: none;
+}
+
+ .truncate-two-lines{
+     display: '-webkit-box';
+     WebkitLineClamp: 2;
+     WebkitBoxOrient: 'vertical';
+     overflow: 'hidden';
+     opacity: 0.9;
+     transition: 'opacity 0.3s';
+}

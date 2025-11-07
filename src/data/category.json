@@ -1,0 +1,64 @@
+{
+    "data":[
+        {
+            "id": "1",
+             "name": "Pizza",
+             "logoUrl": "src/assets/categoryLogos/pizza.png",
+             "position": 0
+             },
+            {
+             "id": "2",
+             "name": "Burgers",
+             "logoUrl": "src/assets/categoryLogos/burgers.png",
+             "position": 1
+             },
+            {
+            "id": "3",
+             "name": "Sushi",
+             "logoUrl": "src/assets/categoryLogos/sushi.png",
+             "position": 2
+             },
+            {
+            "id": "4",
+             "name": "Mexican",
+             "logoUrl": "src/assets/categoryLogos/mexican.png",
+             "position": 3
+             },
+            {
+            "id": "5",
+             "name": "Salads",
+             "logoUrl": "src/assets/categoryLogos/salads.png",
+             "position": 4
+             },
+            {
+            "id": "6",
+             "name": "Pasta",
+             "logoUrl": "src/assets/categoryLogos/pasta.png",
+             "position": 5
+             },
+            {
+            "id": "7",
+             "name": "Desserts",
+             "logoUrl": "src/assets/categoryLogos/desserts.png",
+             "position": 6
+             },
+            {
+            "id": "8",
+             "name": "Beverages",
+             "logoUrl": "src/assets/categoryLogos/beverages.png",
+             "position": 7
+             },
+            {
+            "id": "9",
+             "name": "Seafood",
+             "logoUrl": "src/assets/categoryLogos/seafood.png",
+             "position": 8
+             },
+            {
+            "id": "10",
+             "name": "Indian",
+             "logoUrl": "src/assets/categoryLogos/indian.png",
+             "position": 9
+             }
+    ]
+}

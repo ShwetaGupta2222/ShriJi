@@ -1,0 +1,19 @@
+{
+    "data":[
+        {
+            "id":"1",
+             "name":"Best Seller",
+             "bgColor":"#7943c9"
+             },
+            {
+            "id":"2",
+             "name":"New",
+             "bgColor":"#32a852"
+             },
+            {
+            "id":"3",
+             "name":"Spicy 🔥",
+             "bgColor":"#e34234"
+             }
+    ]
+}
