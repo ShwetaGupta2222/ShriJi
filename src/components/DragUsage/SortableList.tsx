@@ -110,7 +110,7 @@ export function GenericSortableList<T extends Item>({
         position: index + 1,
       }));
       
-      setItems(updatedItems as React.SetStateAction<T[]>); 
+      setItems(updatedItems); 
       console.log(`[${listTitle}] New positions calculated and saved.`);
     }
   };
