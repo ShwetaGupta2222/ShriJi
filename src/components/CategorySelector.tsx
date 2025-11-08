@@ -4,8 +4,8 @@ import { useFoodGridData } from '../context/FoodGridContext';
 import { useData } from '../context/DataContext';
 import { DEFAULT_FOOD_CATEGORY_LOGO } from '../utils/Constants';
 
-interface CategorySelectorProps { isEditPage?: boolean; }
-const CategorySelector: React.FC<CategorySelectorProps> = ({ isEditPage }) => {
+interface CategorySelectorProps {}
+const CategorySelector: React.FC<CategorySelectorProps> = ({}) => {
     const { categories } = useData();
     const { activeCategory, setActiveCategory } = useFoodGridData();
     const categoryData: CategoryOption[] = categories;
