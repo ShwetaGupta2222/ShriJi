@@ -16,12 +16,13 @@ import { checkAvailability, formatTime12Hour, getFoodTagByName } from '../utils/
 import { DEFAULT_FOOD_ITEM_IMG } from '../utils/Constants';
 import DisableBox from './DisableBox';
 import { DeleteOutlineOutlined, EditOutlined } from '@mui/icons-material';
+import { GenericSortableList } from './DragUsage/SortableList';
 
 interface FoodItemCardProps {
     item: FoodItem;
 }
 
-const FoodItemCard: React.FC<FoodItemCardProps> = ({ item }) => {
+export const FoodItemCard: React.FC<FoodItemCardProps> = ({ item }) => {
     const { tags } = useData();
     const { onShowDetailClicked } = useFoodGridData()
     const tagDetails = item.tag ? getFoodTagByName(item.tag, tags) : null
@@ -164,7 +165,7 @@ const FoodItemCard: React.FC<FoodItemCardProps> = ({ item }) => {
 };
 
 const FoodItemGrid: React.FC<EmptyProps> = ({ }) => {
-    const { foodItems } = useData();
+    const { foodItems,setFoodItems } = useData();
     const { activeCategory } = useFoodGridData();
     const foodItemsData: FoodItem[] = foodItems.sort((a, b) => {
         if (a.available !== b.available) {
@@ -189,6 +190,7 @@ const FoodItemGrid: React.FC<EmptyProps> = ({ }) => {
                         item={item}
                     />
                 ))}
+                 <GenericSortableList items={foodItems} setItems={setFoodItems} Comp={FoodItemCard} listTitle=""/>
             </div>
         </div>
     );

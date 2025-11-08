@@ -157,18 +157,15 @@ const FoodUpsertForm: React.FC<FoodFormProps> = ({
     return (
     <div className={
         `top-[60px] bg-opacity-0 bg-[#ececec] w-[100vw] z-6 overflow-hidden ${isAddingItem
-            ? "h-[85vh]"
-            : "fixed h-[98vh] md:top-[0px]"
-        } ${isAddingItem
-            ? ""
-            : `${slideOut
+            ? "h-[85vh] "
+            :`fixed h-[98vh] md:top-[0px] ${slideOut
                 ? 'hide-left'
                 : 'show-left'
             }`
         }`
     }>
-        <div className='relative h-full flex md:items-center justify-center'>
-            <Box className="mx-auto w-full md:pt-16 p-8 bg-white rounded-xl not-[]:md:rounded-b-xl shadow-2xl md:w-2/3 lg:w-1/2" component="form"
+        <div className={`relative h-full flex md:items-center justify-center ${!slideOut?"bg-black/30":""}`}>
+            <Box className="mx-auto w-full md:pt-16 p-8 bg-white rounded-b-xl shadow-2xl md:w-2/3 lg:w-1/2" component="form"
                 onSubmit={handleSubmit}> {
                     !isAddingItem && <Button className="absolute top-[-2%] left-[95%]"
                         onClick={handleCloseClick}

@@ -40,6 +40,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
         return posA - posB;
     }));
 
+
     useEffect(() => {
         const newMap = new Map<string,
             FoodItem>();
@@ -47,6 +48,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
             newMap.set(item.id, item);
         });
         setFoodItemsMap(newMap);
+        console.log(foodItems)
     }, [foodItems]);
 
     const contextValue: DataContextType = {

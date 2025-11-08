@@ -5,13 +5,14 @@ import { AdminRoles, OperationStatus, type CategoryOption, type FoodItem } from 
 import CategoryUpsertForm from "./CategoryUpsertForm";
 import EditMenu from "./EditMenu";
 import FoodUpsertForm from "./FoodUpsertForm";
+import { EditSliders } from "./EditSliders";
 
 
 function AdminHomePage() {
     const { updateFoodItems, updateCategories } = useMenuAdminData();
     const { showSnackbar } = useSnackbar();
     const roles = Object.entries(AdminRoles);
-    const [activeRole, setActiveRole] = useState(Object.keys(AdminRoles)[2]);
+    const [activeRole, setActiveRole] = useState(Object.keys(AdminRoles)[3]);
     const onNewCategoryAddition = () => {
         setActiveRole("ADD_NEW_CATEGORY")
     };
@@ -82,6 +83,9 @@ function AdminHomePage() {
         }
         {
             (activeRole === "EDIT_FOOD_ITEM") && <EditMenu onNewCategpryAddition={onNewCategoryAddition} />
+        } 
+        {
+            (activeRole === "EDIT_SLIDERS") && <EditSliders />
         } 
     </div>);
 }

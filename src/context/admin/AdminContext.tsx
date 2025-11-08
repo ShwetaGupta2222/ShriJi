@@ -7,6 +7,8 @@ interface AdminContextType {
     setShowAdminLoginPage: (val : boolean) => void;
     handleAdminLogin: (formData : LoginFormData) => Promise < OperationResult >;
     handleAdminLogOut: () => OperationResult;
+    items:any[];
+    setItems:(val:any[])=>void;
 }
 const AdminContext = createContext < AdminContextType | undefined > (undefined);
 
@@ -26,6 +28,7 @@ const delay = (ms : number) => new Promise(resolve => setTimeout(resolve, ms));
 export const AdminProvider: React.FC < AdminProviderProps > = ({children}) => {
     const [isAdmin, setIsAdmin] = useState < boolean > (true);
     const [showAdminLoginPage, setShowAdminLoginPage] = useState < boolean > (false);
+     const [items,setItems] = useState<any[]>([]);
     const handleAdminLogin = async (formData : LoginFormData): Promise < OperationResult > => {
         await delay(2000);
         if (formData.userId === 'admin' && formData.password === '1234') {
@@ -49,7 +52,9 @@ export const AdminProvider: React.FC < AdminProviderProps > = ({children}) => {
         showAdminLoginPage,
         setShowAdminLoginPage,
         handleAdminLogin,
-        handleAdminLogOut
+        handleAdminLogOut,
+        items,
+        setItems
     };
     return (<AdminContext.Provider value={contextValue}> {children} </AdminContext.Provider>);
 };

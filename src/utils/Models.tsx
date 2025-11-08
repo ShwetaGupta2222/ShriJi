@@ -13,15 +13,18 @@ export interface FoodTag {
     bgColor?: string | null
 }
 
-export interface FoodItem {
-    id: string;
+export interface Item {
+  id: string;
+  position: number;
+}
+
+export interface FoodItem extends Item{
     category: string;
     name: string;
     description?: string | null;
     price: number;
     likes?: number | null;
     tag?: string | null;
-    position?: number | null;
     imgUrl?: string | null;
     available?: boolean | null;
     availableFrom?: string;
@@ -45,16 +48,21 @@ export interface CategoryOption {
     logoUrl?: string | null;
     position?: number | null;
 }
+
 export interface CategoryFormErrors {
     name?: string;
     logoUrl?: string;
     position?: string;
 }
-export interface SliderDetails {
-    id: string,
+
+export interface SliderDetails extends Item {
     name?: string | null;
     iconUrl: string;
-    position?: number | null;
+}
+
+export interface SliderFormErrors {
+    name?: string;
+    logoUrl?: string;
 }
 
 export enum OperationStatus {
@@ -85,7 +93,8 @@ export enum OrderType {
 }
 
 export enum AdminRoles {
-    ADD_NEW_FOOD_ITEM = '+ New Item',
-    ADD_NEW_CATEGORY = '+ New Category',
-    EDIT_FOOD_ITEM = 'Edit Item'
+    ADD_NEW_FOOD_ITEM = '➕ New Item',
+    ADD_NEW_CATEGORY = '➕ New Category',
+    EDIT_FOOD_ITEM = '✏️ Edit Item',
+    EDIT_SLIDERS = '✏️ Edit Sliders'
 }

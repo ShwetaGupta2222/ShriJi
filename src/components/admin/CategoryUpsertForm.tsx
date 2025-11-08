@@ -7,6 +7,7 @@ const EMPTY_CATEGORY_ITEM: CategoryOption = {
     id: '',
     name: ''
 };
+
 interface CategoryFormProps {
     submitButtonText: string;
     initialData?: CategoryOption;
