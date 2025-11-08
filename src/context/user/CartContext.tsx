@@ -4,7 +4,6 @@ import React, {
     useState,
     type ReactNode
 } from 'react';
-import type { FoodItem } from "../../utils/Models"
 import { useData } from '../DataContext';
 
 interface CartContextType {

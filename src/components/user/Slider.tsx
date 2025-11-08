@@ -83,7 +83,8 @@ function Slider() {
                     className='text-white' />
             </div>
             <div className="absolute z-5 flex -translate-x-1/2 bottom-5 left-1/2 space-x-3 rtl:space-x-reverse"> {
-                imagesDetails.map((url, index) => (<div key={index}
+                imagesDetails.map((url,index) => (
+                    <div key={url.id}
                     className={
                         `w-2 h-2 md:w-3 md:h-3 ${imageIndex == index
                             ? "bg-white"

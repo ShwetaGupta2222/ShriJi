@@ -25,12 +25,10 @@ const EditMenu: React.FC<EditMenuProps> = ({ onNewCategpryAddition }) => {
         showMenubar,
         setShowMenubar,
         noItemsSelected,
-        unselectFoodItem
     } = useGroupEditData();
     const { updateFoodItems, deleteFoodItem } = useMenuAdminData();
     const {
         isEditClicked,
-        setIsEditClicked,
         isDeleteClicked,
         setIsDeleteClicked,
         isDisableClicked,

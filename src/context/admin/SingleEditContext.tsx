@@ -1,7 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import type { CategoryOption, FoodItem, FoodTag, SliderDetails } from "../../utils/Models";
-import { useData } from "../DataContext";
-import { useNavigate } from "react-router-dom";
+import type { FoodItem } from "../../utils/Models";
 import { useFoodGridData } from "../FoodGridContext";
 
 interface SingleEditContextType {

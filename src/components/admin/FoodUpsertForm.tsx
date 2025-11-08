@@ -18,7 +18,8 @@ const EMPTY_FOOD_ITEM: FoodItem = {
     imgUrl: '',
     available: true,
     availableFrom: "00:00",
-    availableTo: "23:59"
+    availableTo: "23:59",
+    position:0,
 };
 
 interface FoodFormProps {
@@ -315,7 +316,7 @@ const FoodUpsertForm: React.FC<FoodFormProps> = ({
                                 }>Please select...</em>
                             </MenuItem>
                             {
-                                foodTags.map((tag, i) => (<MenuItem key={
+                                foodTags.map((tag) => (<MenuItem key={
                                     tag.name
                                 }
                                     value={

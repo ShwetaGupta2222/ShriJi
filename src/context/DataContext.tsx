@@ -33,7 +33,7 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     const [sliderDetails, setSliderDetails] = useState<SliderDetails[]>(initialSliderDetails);
     const [foodItemsMap, setFoodItemsMap] = useState<Map<string, FoodItem>>(new Map());
 
-    const [rawCategories, setRawCategories] = useState<CategoryOption[]>(initialCategories);
+    // const [rawCategories, setRawCategories] = useState<CategoryOption[]>(initialCategories);
     const [categories, setCategories] = useState<CategoryOption[]>(initialCategories?.sort((a, b) => {
         const posA = a.position ?? Number.MAX_SAFE_INTEGER;
         const posB = b.position ?? Number.MAX_SAFE_INTEGER;

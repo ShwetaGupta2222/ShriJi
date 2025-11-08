@@ -11,7 +11,7 @@ export function getEnumKeyFromValue<T extends Record<string,
 
 export function getValueFromEnumKey<T extends Record<string,
     string>>(enumObject: T, enumKey: string): keyof T | undefined {
-    const entry = Object.entries(enumObject).find(([enu, val]) => enu === enumKey);
+    const entry = Object.entries(enumObject).find(([enu]) => enu === enumKey);
     return entry
         ? (entry[0] as keyof T)
         : undefined;

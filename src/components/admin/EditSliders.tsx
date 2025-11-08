@@ -2,8 +2,6 @@
 import { type EmptyProps, type SliderDetails } from "../../utils/Models";
 import { useData } from "../../context/DataContext";
 import { GenericSortableList } from "../DragUsage/SortableList";
-import { Button } from "@mui/material";
-
 
 interface SliderCardProps {
     item: SliderDetails;

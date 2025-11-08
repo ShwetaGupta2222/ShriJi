@@ -1,5 +1,5 @@
 import { useAdminData } from "../context/admin/AdminContext";
-import AdminHomePage from "./admin/AdminHomaPage";
+import AdminHomePage from "./admin/AdminHomePage";
 import UserHomePage from "./user/UserHomePage";
 
 function HomePage() {

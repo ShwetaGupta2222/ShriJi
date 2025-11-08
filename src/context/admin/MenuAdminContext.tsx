@@ -24,7 +24,7 @@ interface MenuAdminProviderProps {
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const MenuAdminProvider: React.FC<MenuAdminProviderProps> = ({ children }) => {
-    const { foodItems, setFoodItems, categories, setCategories, tags, setTags, sliderDetails, setSliderDetails, foodItemsMap, setFoodItemsMap } = useData();
+    const { foodItems, setFoodItems, categories, setCategories, tags, setTags, sliderDetails, setSliderDetails, setFoodItemsMap } = useData();
    
     useEffect(() => {
         const newMap = new Map<string, FoodItem>();
@@ -63,7 +63,7 @@ export const MenuAdminProvider: React.FC<MenuAdminProviderProps> = ({ children }
         const newId = generateUniqueId();
         const itemWithId: T = { ...newItem, id: newId } as T;
 
-        setter(prev => [...prevItems, itemWithId]);
+        setter(() => [...prevItems, itemWithId]);
         return { status: OperationStatus.SUCCESS, message: `New ${itemName} '${newName || newId}' added.`, newId: newId };
     };
     const deleteItemsLogic = async <T extends { id: string }>(

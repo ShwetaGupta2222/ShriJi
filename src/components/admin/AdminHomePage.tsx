@@ -45,7 +45,7 @@ function AdminHomePage() {
     return (<div className="h-auto">
         <div className={`w-full md:w-fit h-fit mx-auto bg-white p-4 md:my-8 md:transform md:translate-y-4`}>
             <div className="flex overflow-x-scroll hide-x-scrollbar gap-4 lg:gap-8 "> {
-                roles.map((roleEnum, roleValue) => {
+                roles.map((roleEnum) => {
                     return (<div key={ roleEnum[0]} className='w-fit flex flex-col'
                         onClick={ () => { setActiveRole(roleEnum[0])}}>
                         <div

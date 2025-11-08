@@ -75,9 +75,7 @@ const MenuToolBar: React.FC<EmptyProps> = () => {
         showDeleteAllDialog,
         setShowDeleteAllDialog,
         availableFrom,
-        setAvailableFrom,
         availableTo,
-        setAvailableTo,
         handleAllClose
     } = useGroupEditData();
     const [slideOut, setSlideOut] = useState<boolean>(false);
