@@ -57,12 +57,12 @@ export interface CategoryFormErrors {
 
 export interface SliderDetails extends Item {
     name?: string | null;
-    iconUrl: string;
+    imgUrl: string;
 }
 
 export interface SliderFormErrors {
     name?: string;
-    logoUrl?: string;
+    imgUrl?: string;
 }
 
 export enum OperationStatus {

@@ -111,7 +111,6 @@ export function GenericSortableList<T extends Item>({
       }));
       
       setItems(updatedItems); 
-      console.log(`[${listTitle}] New positions calculated and saved.`);
     }
   };
 

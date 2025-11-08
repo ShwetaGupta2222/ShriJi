@@ -48,7 +48,6 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
             newMap.set(item.id, item);
         });
         setFoodItemsMap(newMap);
-        console.log(foodItems)
     }, [foodItems]);
 
     const contextValue: DataContextType = {

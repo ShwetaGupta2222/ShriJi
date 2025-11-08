@@ -211,7 +211,7 @@ const CategoryUpsertForm: React.FC<CategoryFormProps> = ({
                                 fontWeight: 800,
                                 backgroundColor: submitButtonText?.includes('DELETE')
                                     ? '#FF2C2C'
-                                    : '#2aa86a'
+                                    : '#000000'
                             }
                         }
                         disabled={isLoading}> {

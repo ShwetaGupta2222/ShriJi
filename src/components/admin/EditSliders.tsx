@@ -1,7 +1,11 @@
 
-import { type EmptyProps, type SliderDetails } from "../../utils/Models";
+import { type EmptyProps, type SliderDetails, type SliderFormErrors } from "../../utils/Models";
 import { useData } from "../../context/DataContext";
 import { GenericSortableList } from "../DragUsage/SortableList";
+import { Box, Button, CircularProgress, TextField, type SelectChangeEvent } from "@mui/material";
+import { PhotoCamera } from "@mui/icons-material";
+import { useCallback, useEffect, useState, type ChangeEvent } from "react";
+import { useMenuAdminData } from "../../context/admin/MenuAdminContext";
 
 interface SliderCardProps {
     item: SliderDetails;
@@ -11,7 +15,7 @@ const SliderCard: React.FC<SliderCardProps> = ({ item }) => {
     return (
         <div className="p-4 bg-purple-50 rounded-lg">
             <img
-                src={item.iconUrl}
+                src={item.imgUrl}
                 alt="Slider Icon"
                 className="w-full h-full object-contain mx-auto"
                 onError={(e) => {
@@ -25,127 +29,150 @@ const SliderCard: React.FC<SliderCardProps> = ({ item }) => {
     );
 };
 
+const EMPTY_SLIDER_ITEM: SliderDetails = {
+    id: '',
+    name: '',
+    imgUrl: '',
+    position: 0
+};
+
 export const EditSliders: React.FC<EmptyProps> = ({ }) => {
     const { sliderDetails, setSliderDetails } = useData();
+    const {updateSliderDetails} = useMenuAdminData();
+    const [isLoading, setIsLoading] = useState<boolean>(false);
+    const [formData, setFormData] = useState<SliderDetails>(EMPTY_SLIDER_ITEM);
+    const [validationErrors, setValidationErrors] = useState<SliderFormErrors>({});
+
+    useEffect(() => { console.log(formData) }, [formData])
+
+    const handleChange = (event: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement> | SelectChangeEvent<string> | SelectChangeEvent<string[]>) => {
+        const { name, value } = event.target;
+        setFormData(prevData => ({
+            ...prevData,
+            [name]: value
+        }));
+        if (name && validationErrors[name as keyof SliderFormErrors]) {
+            setValidationErrors(prev => ({
+                ...prev,
+                [name]: undefined
+            }));
+        }
+    };
+
+    const handleImageChange = (e: ChangeEvent<HTMLInputElement>) => {
+        const file = e.target.files
+            ? e.target.files[0]
+            : null;
+        if (file) {
+            const objectUrl = URL.createObjectURL(file);
+            setFormData(prev => ({
+                ...prev,
+                imgUrl: objectUrl
+            }));
+            if (validationErrors.imgUrl) {
+                setValidationErrors(prev => ({
+                    ...prev,
+                    imgUrl: undefined
+                }));
+            }
+        }
+    };
+
+    const validateCategoryForm = useCallback((data: SliderDetails): SliderFormErrors => {
+        const errors: SliderFormErrors = {};
+        if (data.name && !data?.name.trim()) {
+            errors.name = "Slider Name is required.";
+        }
+        if (!data.imgUrl) {
+            errors.imgUrl = "Image is required.";
+        }
+        return errors;
+    }, []);
+
+    const handleSubmit = async (e: React.FormEvent) => {
+        e.preventDefault();
+        const errors = validateCategoryForm(formData);
+        setValidationErrors(errors);
+        if (Object.keys(errors).length > 0) {
+            console.error("Validation Failed. Check fields.");
+            return;
+        }
+        setIsLoading(true);
+        await updateSliderDetails(formData);
+        setIsLoading(false);
+        setFormData(EMPTY_SLIDER_ITEM);
+    };
 
     return (
-        <div>
-            {/* <div className={
-                `top-[60px] bg-opacity-0 bg-[#ececec] w-[100vw] overflow-hidden ${isAddingItem
-                    ? "md:h-[70vh] md:mb-[15vh] mb-[50vh]"
-                    : "fixed h-[98vh] md:top-[0px]"
-                } ${isAddingItem
-                    ? ""
-                    : `${slideOut
-                        ? 'hide-left'
-                        : 'show-left'
-                    }`
-                }`
-            }>
-                <div className='relative h-full flex md:items-center justify-center'>
-                    <Box className="mx-auto w-full md:pt-16 p-8 bg-white rounded-xl not-[]:md:rounded-b-xl shadow-2xl md:w-2/3 lg:w-1/2" component="form"
-                        onSubmit={handleSubmit}> {
-                            !isAddingItem && <Button className="absolute top-[-2%] left-[95%]"
-                                onClick={handleCloseClick}
-                                color="error"
-                                sx={
-                                    { minWidth: 0 }
-                                }>
-                                <Close />
-                            </Button>
-                        }
-                        <h2 className="text-2xl font-bold mb-6 text-center text-gray-800"> {formHeaderText}</h2>
-                        <div className="flex flex-col gap-4">
-                            <div className="flex items-center gap-2 p-3 border rounded-lg bg-gray-50">
-                                {formData.logoUrl &&
-                                    <img className="rounded-sm top-0 left-0 h-full w-[60px] object-contain"
-                                        src={
-                                            formData.logoUrl
-                                        }
-                                        alt=".." />
+        <div className="w-full h-full">
+            <div className="bg-black/10 w-full h-full p-10 flex flex-col md:flex-row gap-8">
+                <Box className="md:pt-16 p-4 bg-white rounded-xl md:rounded-b-xl shadow-2xl w-full md:w-1/4" component="form"
+                    onSubmit={handleSubmit}> {
+                    }
+                    <h3 className="text-xl font-bold mb-6 text-center text-gray-800">Add Slider</h3>
+                    <div className="flex flex-col gap-2">
+                        <div className="flex items-center gap-1 p-1 border rounded-lg bg-gray-50">
+                            <input accept="image/*"
+                                style={
+                                    { display: 'none' }
                                 }
-                                <input accept="image/png"
-                                    style={
-                                        { display: 'none' }
+                                id="upload-button-png"
+                                type="file"
+                                name="imageFilePng"
+                                onChange={handleImageChange}
+                                disabled={isLoading} />
+                            <label htmlFor="upload-button-png">
+                                {formData.imgUrl
+                                ?<img src={formData.imgUrl}/>
+                                :<Button variant="outlined"
+                                    color={
+                                        "secondary"
                                     }
-                                    id="upload-button-png"
-                                    type="file"
-                                    name="imageFilePng"
-                                    onChange={handleImageChange}
-                                    disabled={isLoading} />
-                                <label htmlFor="upload-button-png">
-                                    <Button variant="outlined"
-                                        color={
-                                            formData.logoUrl
-                                                ? "success"
-                                                : "secondary"
-                                        }
-                                        component="span"
-                                        disabled={isLoading}
-                                        startIcon={<PhotoCamera />}> {
-                                            formData.logoUrl
-                                                ? isAddingItem
-                                                    ? "Selected Image"
-                                                    : "Current Image"
-                                                : isAddingItem
-                                                    ? "Choose Food Image"
-                                                    : "Change Food Image"
-                                        } </Button>
-                                </label>
-                                {
-                                    validationErrors.logoUrl && <p className="text-red-500 text-xs mt-1"> {
-                                        validationErrors.logoUrl
-                                    }</p>
-                                } </div>
-                            <TextField label="Category Name" name="name" type="text" variant="outlined" fullWidth required
-                                value={
-                                    formData.name
-                                }
-                                onChange={handleChange}
-                                disabled={isLoading}
-                                error={
-                                    !!validationErrors.name
-                                }
-                                helperText={
-                                    validationErrors.name
-                                } />
-                            <TextField label="Position (0 or positive number)" name="position" type="number" variant="outlined" fullWidth required
-                                value={
-                                    formData.position ?? 0
-                                }
-                                onChange={handleChange}
-                                disabled={isLoading}
-                                inputProps={
-                                    { min: "0" }
-                                }
-                                error={
-                                    !!validationErrors.position
-                                }
-                                helperText={
-                                    validationErrors.position
-                                } />
-                            <Button type="submit" variant="contained" color="primary" fullWidth
-                                sx={
-                                    {
-                                        paddingY: 1.5,
-                                        marginTop: 2,
-                                        color: "white",
-                                        fontWeight: 800,
-                                        backgroundColor: submitButtonText?.includes('DELETE')
-                                            ? '#FF2C2C'
-                                            : '#2aa86a'
+                                    component="span"
+                                    disabled={isLoading}
+                                    startIcon={<PhotoCamera />}> {
+                                        formData.imgUrl
+                                            ? "Selected Image"
+                                            : "Select New Slider Image"
                                     }
-                                }
-                                disabled={isLoading}> {
-                                    isLoading
-                                        ? <CircularProgress size={30} />
-                                        : submitButtonText
-                                } </Button>
+                                </Button>}
+
+                            </label>
+                            <br />
                         </div>
-                    </Box>
-                </div>
-            </div> */}
-            <div className="bg-black p-10 flex flex-col md:flex-row gap-8">
+                        {
+                            validationErrors.imgUrl && <p className="text-red-500 text-xs mb-2"> {validationErrors.imgUrl}</p>
+                        }
+                        <TextField label="Slider Name" name="name" type="text" variant="outlined" fullWidth required
+                            value={
+                                formData.name
+                            }
+                            onChange={handleChange}
+                            disabled={isLoading}
+                            error={
+                                !!validationErrors.name
+                            }
+                            helperText={
+                                validationErrors.name
+                            } />
+
+                        <Button type="submit" variant="contained" color="primary" fullWidth
+                            sx={
+                                {
+                                    paddingY: 1,
+                                    marginTop: 1,
+                                    color: "white",
+                                    fontWeight: 400,
+                                    backgroundColor: '#000000'
+                                }
+                            }
+                            disabled={isLoading}> {
+                                isLoading
+                                    ? <CircularProgress size={30} />
+                                    : `Add Image`
+                            } </Button>
+                    </div>
+                </Box>
                 <GenericSortableList items={sliderDetails} setItems={setSliderDetails} Comp={SliderCard} listTitle="" />
             </div>
         </div>

@@ -101,7 +101,6 @@ export const MenuAdminProvider: React.FC<MenuAdminProviderProps> = ({ children }
     };
 
     const updateFoodItems = async (newItem: FoodItem): Promise<OperationResult> => {
-        console.log(newItem)
         return await updateItemsLogic(foodItems, newItem, setFoodItems as React.Dispatch<React.SetStateAction<FoodItem[]>>, "Food Item");
     };
 

@@ -33,12 +33,6 @@ const FoodItemDetailPage: React.FC<EmptyProps> = () => {
     if (!availabilityByTime) nextAvailabilityText = nextAvailabilityDay(currentItem.availableFrom, currentItem.availableTo)
     const navigate = useNavigate();
 
-    console.log(currentItem)
-    console.log(itemName)
-    console.log(currentItem.imgUrl)
-    console.log(showItemDetailPage)
-    console.log(availabilityByTime)
-
     const handleClick = () => {
         if (currentCartQuantity === 0) {
             addItemToCart(currentItem.id);
