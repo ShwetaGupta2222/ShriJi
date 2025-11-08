@@ -6,6 +6,8 @@ interface GroupEditContextType {
     setShowCheckbox: (val : boolean) => void;
     showMenubar: boolean;
     setShowMenubar: (val : boolean) => void;
+    reorderEnable: boolean;
+    setReorderEnable: (val : boolean) => void;
     selectFoodItem: (id : string) => void;
     unselectFoodItem: (id : string) => void;
     isIdSelected: (id : string) => boolean;
@@ -45,6 +47,7 @@ export const GroupEditProvider: React.FC < GroupEditProviderProps > = ({children
     const [showDeleteAllDialog, setShowDeleteAllDialog] = useState < boolean > (false)
     const [availableFrom, setAvailableFrom] = useState < string > ("00:00")
     const [availableTo, setAvailableTo] = useState < string > ("23:59")
+    const [reorderEnable,setReorderEnable] = useState<boolean>(false);
 
     useEffect(() => {
         const newSet = new Set < string > ();
@@ -97,6 +100,8 @@ export const GroupEditProvider: React.FC < GroupEditProviderProps > = ({children
         selectedFoodItems,
         showMenubar,
         setShowMenubar,
+        reorderEnable,
+        setReorderEnable,
         showTimeRageDialog,
         setShowTimeRageDialog,
         availableFrom,

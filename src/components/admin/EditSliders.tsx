@@ -13,7 +13,7 @@ interface SliderCardProps {
 
 const SliderCard: React.FC<SliderCardProps> = ({ item }) => {
     return (
-        <div className="p-4 bg-purple-50 rounded-lg">
+        <div className="p-2 bg-purple-50 rounded-lg">
             <img
                 src={item.imgUrl}
                 alt="Slider Icon"
@@ -105,7 +105,7 @@ export const EditSliders: React.FC<EmptyProps> = ({ }) => {
 
     return (
         <div className="w-full h-full">
-            <div className="bg-black/10 w-full h-full p-10 flex flex-col md:flex-row gap-8">
+            <div className="bg-black/50 w-full h-full p-10 flex flex-col md:flex-row gap-8">
                 <Box className="md:pt-16 p-4 bg-white rounded-xl md:rounded-b-xl shadow-2xl w-full md:w-1/4" component="form"
                     onSubmit={handleSubmit}> {
                     }

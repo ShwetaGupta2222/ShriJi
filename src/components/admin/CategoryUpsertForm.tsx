@@ -121,7 +121,7 @@ const CategoryUpsertForm: React.FC<CategoryFormProps> = ({
         }`
     }>
         <div className='relative h-full flex md:items-center justify-center'>
-            <Box className="mx-auto w-full md:pt-16 p-8 bg-white rounded-xl not-[]:md:rounded-b-xl shadow-2xl md:w-2/3 lg:w-1/2" component="form"
+            <Box className="mx-auto w-full md:pt-16 p-2 md:p-8 bg-white rounded-xl not-[]:md:rounded-b-xl shadow-2xl md:w-2/3 lg:w-1/2" component="form"
                 onSubmit={handleSubmit}> {
                     !isAddingItem && <Button className="absolute top-[-2%] left-[95%]"
                         onClick={handleCloseClick}
@@ -132,8 +132,8 @@ const CategoryUpsertForm: React.FC<CategoryFormProps> = ({
                         <Close />
                     </Button>
                 }
-                <h2 className="text-2xl font-bold mb-6 text-center text-gray-800"> {formHeaderText}</h2>
-                <div className="flex flex-col gap-4">
+                <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-gray-800"> {formHeaderText}</h2>
+                <div className="flex flex-col gap-2 md:gap-4">
                     <div className="flex items-center gap-2 p-3 border rounded-lg bg-gray-50"> 
                         {formData.logoUrl && 
                         <img className="rounded-sm top-0 left-0 h-full w-[60px] object-contain"

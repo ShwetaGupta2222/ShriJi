@@ -6,6 +6,7 @@ import type { CategoryOption, FoodFormErrors, FoodItem, FoodTag } from "../../ut
 import { Box, Button, CircularProgress, FormControl, InputLabel, MenuItem, Select, TextField, type SelectChangeEvent } from "@mui/material";
 import { Close, PhotoCamera } from "@mui/icons-material";
 import { capitalizeFirstLetter } from "../../utils/Functions";
+import { useAdminData } from "../../context/admin/AdminContext";
 
 const NEW_CATEGORY_OPTION = "--- Add New Category ---";
 const EMPTY_FOOD_ITEM: FoodItem = {
@@ -25,7 +26,6 @@ const EMPTY_FOOD_ITEM: FoodItem = {
 interface FoodFormProps {
     submitButtonText: string;
     onFormSubmit: (data: FoodItem) => void;
-    onNewCategoryRequest: () => void;
     formHeaderText?: string;
     isAddingItem?: boolean;
 }
@@ -33,10 +33,10 @@ interface FoodFormProps {
 const FoodUpsertForm: React.FC<FoodFormProps> = ({
     submitButtonText,
     onFormSubmit,
-    onNewCategoryRequest,
     formHeaderText,
     isAddingItem
 }) => {
+    const {onNewCategoryAddition} = useAdminData();
     const { currentItem }= useFoodGridData();
     const { isEditClicked, setIsEditClicked } = useSingleEditData();
     const { categories, tags } = useData()
@@ -87,7 +87,7 @@ const FoodUpsertForm: React.FC<FoodFormProps> = ({
     const handleCategoryChange = (event: SelectChangeEvent<string>) => {
         const selectedValue = event.target.value;
         if (selectedValue === NEW_CATEGORY_OPTION) {
-            onNewCategoryRequest();
+            onNewCategoryAddition();
             return;
         }
         handleChange(event as SelectChangeEvent<string>);
@@ -164,9 +164,9 @@ const FoodUpsertForm: React.FC<FoodFormProps> = ({
         }`
     }>
         <div className={`relative h-full flex md:items-center justify-center ${!slideOut && isEditClicked?"bg-black/30":""}`}>
-            <Box className="mx-auto w-full md:pt-16 p-8 bg-white rounded-b-xl shadow-2xl md:w-2/3 lg:w-1/2" component="form"
+            <Box className="mx-auto w-full md:pt-16 p-2 md:p-8 bg-white rounded-b-xl shadow-2xl md:w-2/3 lg:w-1/2" component="form"
                 onSubmit={handleSubmit}> {
-                    !isAddingItem && <Button className="absolute top-[-2%] left-[95%]"
+                    !isAddingItem && <Button className="absolute left-[90%] md:top-[-2%] md:left-[95%]"
                         onClick={handleCloseClick}
                         color="error"
                         sx={
@@ -175,8 +175,8 @@ const FoodUpsertForm: React.FC<FoodFormProps> = ({
                         <Close />
                     </Button>
                 }
-                <h2 className="text-2xl font-bold mb-6 text-center text-gray-800"> {formHeaderText}</h2>
-                <div className="flex flex-col gap-4">
+                <h2 className="text-xl md:text-2xl font-bold mb-6 text-center text-gray-800"> {formHeaderText}</h2>
+                <div className="flex flex-col gap-2 md:gap-4">
                     <div className="flex items-center gap-2 p-3 border rounded-lg"> {
                         formData.imgUrl && <img className="rounded-sm top-0 left-0 h-full w-[60px] object-contain"
                             src={

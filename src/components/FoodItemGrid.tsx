@@ -44,6 +44,7 @@ export const FoodItemCard: React.FC<FoodItemCardProps> = ({ item }) => {
     const currentCartQuantity = cartQuantityOfItem(item.id)
     const isMinQuantity = currentCartQuantity === 0;
     const isMaxQuantity = currentCartQuantity === 5;
+
     return (
         <div className={`relative rounded-lg bg-white overflow-hidden transition duration-300 ease-in-out`}>
             <div className="relative h-[9.5rem] md:h-[12.25rem] w-full overflow-hidden">
@@ -140,13 +141,13 @@ export const FoodItemCard: React.FC<FoodItemCardProps> = ({ item }) => {
             </div>
 
             {isAdmin && <div className='absolute flex bottom-3 right-2 gap-2 z-5'>
-                        <div className="top-2 h-[25px] w-[25px] bg-[#3182d1] right-2 p-1 rounded-full shadow-md cursor-pointer flex items-center justify-center">
-                            <EditOutlined onClick={() => { onEditClicked(item) }} sx={{ objectFit: "contain", color: '#ffffff', fontSize: 16 }} />
-                        </div>
-                        <div className="top-2 h-[25px] w-[25px] bg-[#de3a35] right-2 p-1 rounded-full shadow-md cursor-pointer flex items-center justify-center">
-                            <DeleteOutlineOutlined onClick={() => { onDeleteClicked(item) }} sx={{ objectFit: "contain", color: '#ffffff', fontSize: 16 }} />
-                        </div>
-                    </div>}
+                <div className="top-2 h-[25px] w-[25px] bg-[#3182d1] right-2 p-1 rounded-full shadow-md cursor-pointer flex items-center justify-center">
+                    <EditOutlined onClick={() => { onEditClicked(item) }} sx={{ objectFit: "contain", color: '#ffffff', fontSize: 16 }} />
+                </div>
+                <div className="top-2 h-[25px] w-[25px] bg-[#de3a35] right-2 p-1 rounded-full shadow-md cursor-pointer flex items-center justify-center">
+                    <DeleteOutlineOutlined onClick={() => { onDeleteClicked(item) }} sx={{ objectFit: "contain", color: '#ffffff', fontSize: 16 }} />
+                </div>
+            </div>}
 
             {isAdmin && showCheckbox &&
                 <Box onClick={handleToggle} className="absolute inset-0 w-full h-full flex items-center justify-center bg-white/50">
@@ -165,8 +166,10 @@ export const FoodItemCard: React.FC<FoodItemCardProps> = ({ item }) => {
 };
 
 const FoodItemGrid: React.FC<EmptyProps> = ({ }) => {
-    const { foodItems,setFoodItems } = useData();
+    const { foodItems, setFoodItems } = useData();
     const { activeCategory } = useFoodGridData();
+    const { reorderEnable } = useGroupEditData();
+
     const foodItemsData: FoodItem[] = foodItems.sort((a, b) => {
         if (a.available !== b.available) {
             if (a.available && !b.available)
@@ -184,13 +187,17 @@ const FoodItemGrid: React.FC<EmptyProps> = ({ }) => {
     return (
         <div className="p-8 min-h-screen bg-[#ececec]">
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-7xl mx-auto">
-                {foodItemsData.map(item => ((activeCategory === undefined || item.category === activeCategory) &&
-                    <FoodItemCard
-                        key={item.id}
-                        item={item}
-                    />
-                ))}
-                 <GenericSortableList items={foodItems} setItems={setFoodItems} Comp={FoodItemCard} listTitle=""/>
+                {reorderEnable
+                    ? <GenericSortableList items={foodItems} setItems={setFoodItems} Comp={FoodItemCard} listTitle="" />
+                    : (
+                        foodItemsData.map(item => ((activeCategory === undefined || item.category === activeCategory) &&
+                            <FoodItemCard
+                                key={item.id}
+                                item={item}
+                            />
+                        ))
+                    )
+                }
             </div>
         </div>
     );
