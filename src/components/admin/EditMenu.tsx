@@ -92,7 +92,7 @@ const EditMenu: React.FC<EditMenuProps> = ({ onNewCategpryAddition }) => {
     })
 
     return (<div className="min-w-[100vw] w-full">
-        <CategorySelector isEditPage={true} />
+        <CategorySelector />
         <FoodItemGrid /> 
         {
             isEditClicked && <FoodUpsertForm submitButtonText={'UPDATE ITEM TO MENU'}
