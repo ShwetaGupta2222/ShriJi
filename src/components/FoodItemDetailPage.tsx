@@ -1,4 +1,4 @@
-import { useNavigate, useParams } from "react-router-dom";
+import { useNavigate } from "react-router-dom";
 import { useFoodGridData } from "../context/FoodGridContext";
 import type { EmptyProps } from "../utils/Models";
 import { useAdminData } from "../context/admin/AdminContext";
