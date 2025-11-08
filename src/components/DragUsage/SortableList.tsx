@@ -80,7 +80,7 @@ const MemoizedSortableContainer = React.memo(SortableContainer) as typeof Sortab
 
 interface GenericSortableListProps<T extends Item> {
   items: T[];
-  setItems: React.Dispatch<React.SetStateAction<T[]>>;
+  setItems:(val:T[])=>void;
   Comp: React.ComponentType<{ item: T }>;
   listTitle: string;
 }

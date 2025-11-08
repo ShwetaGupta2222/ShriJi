@@ -37,7 +37,7 @@ export const FoodItemCard: React.FC<FoodItemCardProps> = ({ item }) => {
     const { onEditClicked, onDeleteClicked, onDisableClicked } = useSingleEditData();
     const { showCheckbox, selectFoodItem, unselectFoodItem, isIdSelected } = useGroupEditData();
     const isSelected = isIdSelected(item.id);
-    const handleToggle = (e: any) => { if (isSelected) unselectFoodItem(item.id); else selectFoodItem(item.id); };
+    const handleToggle = () => { if (isSelected) unselectFoodItem(item.id); else selectFoodItem(item.id); };
 
     const [isLiked, setIsLiked] = useState<boolean>(false);
     const { addItemToCart, removeItemFromCart, cartQuantityOfItem } = useCart();
