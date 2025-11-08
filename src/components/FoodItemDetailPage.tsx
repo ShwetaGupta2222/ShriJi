@@ -14,10 +14,9 @@ import { AccessTime, ArrowBackIos, ArrowForward, Favorite, FavoriteBorder, Hourg
 const FoodItemDetailPage: React.FC<EmptyProps> = () => {
     const { currentItem } = useFoodGridData();
     if (!currentItem) return <></>;
-    const { itemName } = useParams();
     const { isAdmin } = useAdminData();
     const [isLiked, setIsLiked] = useState<boolean>(false);
-    const { showItemDetailPage, setShowItemDetailPage, onShowDetailClicked } = useFoodGridData();
+    const { setShowItemDetailPage, onShowDetailClicked } = useFoodGridData();
     const { addItemToCart, removeItemFromCart, cartQuantityOfItem, setShowCartPage } = useCart();
     const currentCartQuantity = cartQuantityOfItem(currentItem.id)
     const isMinQuantity = currentCartQuantity === 0;

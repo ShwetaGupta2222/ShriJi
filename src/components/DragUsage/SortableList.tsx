@@ -82,14 +82,13 @@ interface GenericSortableListProps<T extends Item> {
   items: T[];
   setItems:(val:T[])=>void;
   Comp: React.ComponentType<{ item: T }>;
-  listTitle: string;
+  listTitle?: string;
 }
 
 export function GenericSortableList<T extends Item>({
   items,
   setItems,
-  Comp,
-  listTitle,
+  Comp
 }: GenericSortableListProps<T>) {
   const sensors = useSensors(
     useSensor(PointerSensor),
