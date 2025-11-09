@@ -1,4 +1,4 @@
-import { useEffect, useState } from "react";
+import { useEffect} from "react";
 import { useMenuAdminData } from "../../context/admin/MenuAdminContext";
 import { useSnackbar } from "../../context/SnackbarContext";
 import { AdminRoles, OperationStatus, type CategoryOption, type FoodItem } from "../../utils/Models";
@@ -16,7 +16,7 @@ function AdminHomePage() {
     const {currentTab,setCurrentTab} = useAdminData();
     const {setReorderEnable} = useGroupEditData();
     const roles = Object.entries(AdminRoles);
-    useEffect(()=>{setCurrentTab(Object.keys(AdminRoles)[2])},[])
+    useEffect(()=>{setCurrentTab(Object.keys(AdminRoles)[0])},[])
 
     const onAddItemFormSubmit = async (item: FoodItem) => {
         try {

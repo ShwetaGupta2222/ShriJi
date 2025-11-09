@@ -123,9 +123,6 @@ const FoodUpsertForm: React.FC<FoodFormProps> = ({
         if (data.price <= 0) {
             errors.price = "Price must be a valid number.";
         }
-        if (data.position != undefined && Number(data.position) < 0) {
-            errors.position = "Position must be a non-negative number.";
-        }
         return errors;
     }, []);
 
@@ -327,21 +324,6 @@ const FoodUpsertForm: React.FC<FoodFormProps> = ({
                                     } </MenuItem>))
                             } </Select>
                     </FormControl>
-                    <TextField label="Position (0 or positive number)" name="position" type="number" variant="outlined" fullWidth required
-                        value={
-                            formData.position ?? 0
-                        }
-                        onChange={handleChange}
-                        disabled={isLoading}
-                        inputProps={
-                            { min: "0" }
-                        }
-                        error={
-                            !!validationErrors.position
-                        }
-                        helperText={
-                            validationErrors.position
-                        } />
                     <Button type="submit" variant="contained" color="primary" fullWidth
                         sx={
                             {

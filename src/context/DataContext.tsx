@@ -61,9 +61,9 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
         return allFoodItems.length===0;
     }
 
-    const noDataForCategory = () => {
-        return foodItems.length === 0;
-    }
+    // const noDataForCategory = () => {
+    //     return foodItems.length === 0;
+    // }
 
     const contextValue: DataContextType = {
         foodItems,
