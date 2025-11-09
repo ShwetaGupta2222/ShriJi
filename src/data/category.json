@@ -3,7 +3,7 @@
         {
             "id": "1",
              "name": "Pizza",
-             "logoUrl": "src/assets/categoryLogos/pizza.png",
+             "logoUrl": "https://i.ibb.co/YTNBR2bc/pizza.png",
              "position": 0
              },
             {
@@ -19,5 +19,5 @@
              "position": 2
              }
     ]
-    
+
 }

@@ -28,7 +28,7 @@ interface AdminProviderProps {
 
 const delay = (ms : number) => new Promise(resolve => setTimeout(resolve, ms));
 export const AdminProvider: React.FC < AdminProviderProps > = ({children}) => {
-    const [isAdmin, setIsAdmin] = useState < boolean > (true);
+    const [isAdmin, setIsAdmin] = useState < boolean > (false);
     const [showAdminLoginPage, setShowAdminLoginPage] = useState < boolean > (false);
     const [currentTab,setCurrentTab] = useState<string>("");
     const navigate = useNavigate();

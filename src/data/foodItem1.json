@@ -9,7 +9,7 @@
             "likes": 120,
             "tag": "Best Seller",
             "position": 1,
-            "imgUrl": "src/assets/burger.jpg",
+            "imgUrl": "https://i.ibb.co/9HHLvWpG/burger.jpg",
             "available": true,
             "availableFrom": "00:00",
             "availableTo": "03:00"
@@ -37,7 +37,7 @@
             "likes": 95,
             "tag": "Spicy 🔥",
             "position": 3,
-            "imgUrl": "src/assets/foodImages/item-3.jpeg",
+            "imgUrl": "https://i.ibb.co/9HHLvWpG/burger.jpg",
             "available": true,
             "availableFrom": "18:00",
             "availableTo": "01:00"

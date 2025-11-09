@@ -3,13 +3,19 @@
         {
             "id":"1",
              "name":"Daily Combo Deals",
-             "imgUrl": "src/assets/logo.png",
+             "imgUrl": "https://i.ibb.co/5mPF9zk/slider1.jpg",
              "position": 1
              },
             {
             "id":"2",
              "name":"50% Off Selected Pizzas",
-             "imgUrl": "src/assets/sliderImages/slider2.jpg",
+             "imgUrl": "https://i.ibb.co/ymn7fyWJ/slider2.jpg",
+             "position": 2
+             },
+              {
+            "id":"2",
+             "name":"50% Off Selected Pizzas",
+             "imgUrl": "https://i.ibb.co/20kJgp70/slider3.jpg",
              "position": 2
              }
     ]
