@@ -57,7 +57,7 @@ const CartPage: React.FC<EmptyProps> = ({ }) => {
                     boxShadow: '0px 10px 20px rgba(0, 0, 0, 0.05)',
                 }} className="relative">
                 <div onClick={() => { navigate("/") }} className="absolute cursor-pointer px-2"> <ArrowBackIos onClick={() => { navigate("/") }} /> </div>
-                <Typography variant="h5" component="h1" align="center" fontWeight="bold" sx={{ mb: 2 }} >
+                <Typography variant="h6" component="h3" align="center" fontWeight="bold" sx={{mb:-1}} >
                     Review Your Order
                 </Typography>
                 <Box sx={{ display: 'flex', flexDirection: 'column', gap: 2, maxHeight: '40vh', overflowY: 'auto', pr: 1, '&::-webkit-scrollbar': { width: '6px' }, '&::-webkit-scrollbar-track': { background: '#f1f1f1', borderRadius: '10px' }, '&::-webkit-scrollbar-thumb': { background: '#888', borderRadius: '10px' }, '&::-webkit-scrollbar-thumb:hover': { background: '#555' }, }} >
@@ -69,15 +69,15 @@ const CartPage: React.FC<EmptyProps> = ({ }) => {
                             const isMaxQuantity = currentCartQuantity === 5;
                             if (!itemDetail) return;
                             return (
-                                <Paper key={itemId} elevation={1} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 1, borderRadius: '12px', bgcolor: 'background.paper', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.03)', }} >
+                                <Paper key={itemId} elevation={1} sx={{ display: 'flex', alignItems: 'center', justifyContent: 'space-between', p: 1, borderRadius: '12px', bgcolor: 'background.paper', boxShadow: '0px 2px 2px rgba(0, 0, 0, 0.03)', border: "1px solid rgba(0, 0, 0, 0.1)" }} >
                                     <div className="flex items-center">
 
-                                        <div className="w-[60px] h-[60px] rounded-[8px] border-1 border-gray-200"> {itemDetail.imgUrl ?
+                                        <div className="w-[50px] h-[50px] rounded-[8px] border-1 border-gray-200"> {itemDetail.imgUrl ?
                                             <img src={itemDetail?.imgUrl} className="w-full h-full object-cover rounded-[8px]" onError={(e) => { if (e.currentTarget.src !== DEFAULT_FOOD_ITEM_IMG) { e.currentTarget.src = DEFAULT_FOOD_ITEM_IMG; } }} /> :
                                             <img src={DEFAULT_FOOD_ITEM_IMG} alt="default" />}
                                         </div>
                                         <div className="flex flex-col items-start justify-center">
-                                            <p className="ml-2"> {itemDetail.name}
+                                            <p className="text-sm ml-2"> {itemDetail.name}
                                             </p>
                                             <p className="ml-2 text-sm font-semibold"> ₹{itemDetail.price}/Item
                                             </p>
@@ -102,25 +102,24 @@ const CartPage: React.FC<EmptyProps> = ({ }) => {
                                 </Paper>)
                         }))}
                 </Box>
-                <Divider sx={{ my: 2 }} />
-                <div className="absolute bottom-0 left-0 right-0 p-3 rounded-2xl bg-white flex flex-col gap-1.5">
+                <div className="absolute bottom-12 left-0 right-0 p-3 rounded-2xl bg-white flex flex-col gap-1.5">
                     <Divider sx={{ my: 1 }} />
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Typography variant="h6" color="text.secondary"> Subtotal
+                        <Typography variant="body1" fontWeight="medium"  color="text.secondary"> Subtotal
                         </Typography>
-                        <Typography variant="h6" fontWeight="medium"> ₹{subTotal}
-                        </Typography>
-                    </Box>
-                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Typography variant="body1" color="text.secondary"> Delivery Charge
-                        </Typography>
-                        <Typography variant="body1" fontWeight="medium"> ₹{DELIVERY_CHARGE.toFixed(0)}
+                        <Typography variant="body1" fontWeight="medium"> ₹{subTotal}
                         </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
-                        <Typography variant="body1" color="text.secondary"> Platform Fee
+                        <Typography variant="body2" color="text.secondary"> Delivery Charge
                         </Typography>
-                        <Typography variant="body1" fontWeight="medium"> ₹{PLATFORM_FEE.toFixed(0)}
+                        <Typography variant="body2" fontWeight="medium"> ₹{DELIVERY_CHARGE.toFixed(0)}
+                        </Typography>
+                    </Box>
+                    <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
+                        <Typography variant="body2" color="text.secondary"> Platform Fee
+                        </Typography>
+                        <Typography variant="body2" fontWeight="medium"> ₹{PLATFORM_FEE.toFixed(0)}
                         </Typography>
                     </Box>
                     <Divider sx={{ my: 1 }} />
@@ -128,10 +127,10 @@ const CartPage: React.FC<EmptyProps> = ({ }) => {
                         <Typography variant="h6" fontWeight="bold"> Grand
                             Total
                         </Typography>
-                        <Typography variant="h5" fontWeight="bold" color="primary"> ₹{(subTotal + DELIVERY_CHARGE + PLATFORM_FEE).toFixed(0)}
+                        <Typography variant="h6" fontWeight="bold" color="primary"> ₹{(subTotal + DELIVERY_CHARGE + PLATFORM_FEE).toFixed(0)}
                         </Typography>
                     </Box>
-                    <Button variant="contained" color="success" fullWidth size="large" endIcon={<ArrowForward />} onClick={() => { }} disabled={cartFoodItems.size === 0} sx={{ mt: 3, py: 1.5, borderRadius: '12px', fontWeight: 'bold', fontSize: '1.1rem', boxShadow: '0px 8px 15px rgba(255, 87, 34, 0.3)', }} >
+                    <Button variant="contained" color="success" fullWidth size="large" endIcon={<ArrowForward />} onClick={() => { }} disabled={cartFoodItems.size === 0} sx={{ mt: 2, py: 1.2, borderRadius: '12px', fontWeight: 'bold', fontSize: '1rem', boxShadow: '0px 8px 15px rgba(255, 87, 34, 0.3)', }} >
                         {orderType === "DINING" && "Place Table Order"}
                         {orderType === "ONLINE_ORDER" && "Proceed to Payment"}
                         {orderType === "TAKE_AWAY" && "Confirm Pickup"}
