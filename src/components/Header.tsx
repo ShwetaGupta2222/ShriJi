@@ -25,10 +25,10 @@ function Header() {
                 className='h-full w-full object-contain' />
             </div>
             <div className='h-full w-full ml-2 flex flex-col justify-center items-start'>
-                <p className='font-semibold text-[14px] md: text-[17px]'>Welcome to The
+                <p className='font-semibold text-black text-[14px] md: text-[17px]'>Welcome to The
 
                     ShriJi Cafe</p>
-                <p className='mt-0 text-[12px] md:text-[14px] '>Sip, Setter and Sparkle</p>
+                <p className='mt-0 text-[12px] text-black md:text-[14px] '>Sip, Setter and Sparkle</p>
             </div>
         </div>
         <div className='relative z-8 flex items-center py-5 md:py-8 h-full gap-2'>
