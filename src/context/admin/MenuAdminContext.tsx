@@ -94,7 +94,6 @@ export const MenuAdminProvider: React.FC<MenuAdminProviderProps> = ({ children }
     };
 
     const deleteFoodItem = async (id: string): Promise<OperationResult> => {
-        console.log("deleting " + id)
         return await deleteItemsLogic(id, setAllFoodItems as React.Dispatch<React.SetStateAction<FoodItem[]>>, "Food Item");
     };
 

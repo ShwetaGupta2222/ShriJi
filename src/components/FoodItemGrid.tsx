@@ -178,7 +178,6 @@ const FoodItemGrid: React.FC<EmptyProps> = ({ }) => {
             }
         });
         setFoodItems(newArray);
-        console.log(activeCategory, newArray, allFoodItems)
     }, [activeCategory, allFoodItems]);
 
     const foodItemsData: FoodItem[] = foodItems.sort((a, b) => {

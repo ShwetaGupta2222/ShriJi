@@ -43,8 +43,8 @@ function Slider() {
                 <div key={imageIndex}
                     className="flex-shrink-0 w-[100vw] h-[200px] md:h-[300px] overflow-hidden shadow-xl">
                     <img 
-                        src={imagesDetails[imageIndex].imgUrl}
-                        alt={imagesDetails[imageIndex].imgUrl}
+                        src={imagesDetails[imageIndex]?.imgUrl}
+                        alt={imagesDetails[imageIndex]?.imgUrl}
                         className={
                             `w-full h-full object-cover absolute transition-opacity duration-200 ease-in-out ${isFading
                                 ? 'opacity-0'
