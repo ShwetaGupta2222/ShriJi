@@ -85,7 +85,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, onClose }) => {
             sx={
                 { backgroundColor: 'white' }
             }>
-            <div className="absolute bottom-0 w-full flex justify-center items-end z-5 opacity-100">
+            <div className="absolute bottom-0 w-full flex justify-center items-end z-5 opacity-60">
                 <img className="w-full object-contain"
                     src={LOGO}
                     alt="." />
@@ -129,7 +129,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, onClose }) => {
                             }>
                             Logout
                         </Button>
-                    </nav>
+                    </nav> 
                     : <nav className="absolute  w-full flex flex-col p-4 space-y-2 z-6">
                         <div className="p-2 rounded transition duration-150"
                             onClick={handleHomeClick}>

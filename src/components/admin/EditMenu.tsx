@@ -34,7 +34,7 @@ const EditMenu: React.FC<EmptyProps> = ({ }) => {
         isDisableClicked,
         setIsDisableClicked
     } = useSingleEditData();
-    const { overallNoData } = useData();
+    const { foodItems, overallNoData } = useData();
 
     const onEditFoodItem = async (item: FoodItem) => {
         try {
@@ -100,7 +100,7 @@ const EditMenu: React.FC<EmptyProps> = ({ }) => {
             </div>}
         <FoodItemGrid />
         {
-            isAdmin && <div onClick={
+            isAdmin && foodItems.length && <div onClick={
                 () => {
                     setShowCheckbox(!showCheckbox)
                     setReorderEnable(false)
