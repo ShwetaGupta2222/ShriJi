@@ -33,8 +33,8 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, onClose }) => {
         return null;
     }
     const drawerClasses = ` fixed top-0 right-0 z-50 h-full shadow-2xl ${slideOut
-            ? 'hide-right'
-            : 'show-right'
+        ? 'hide-right'
+        : 'show-right'
         } w-3/4 sm:w-2/3 md:w-1/3 lg:w-1/4 `;
 
     const handleHomeClick = () => {
@@ -75,14 +75,22 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, onClose }) => {
         } handleCloseClick();
     }
 
-    return (<div className="fixed left-0 w-[100vw] h-[100vh]"> {
-        isOpen && (<div className="fixed inset-0 z-40 bg-opacity-40 transition-opacity duration-300"
-            onClick={handleCloseClick} />)
-    }
+    return (<div className="fixed left-0 w-[100vw] h-[100vh]">
+        {
+            isOpen && (<div className="fixed inset-0 z-40 bg-opacity-40 transition-opacity duration-300"
+                onClick={handleCloseClick} />)
+        }
+
         <Box className={drawerClasses}
             sx={
                 { backgroundColor: 'white' }
             }>
+            <div className="absolute bottom-0 w-full flex justify-center items-end z-5 opacity-100">
+                <img className="w-full object-contain"
+                    src={LOGO}
+                    alt="." />
+            </div>
+
             <div className="flex justify-between items-center p-4 border-b">
                 <Typography variant="h6" className="font-bold text-black"></Typography>
                 <IconButton onClick={handleCloseClick}
@@ -90,9 +98,10 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, onClose }) => {
                     <CloseIcon />
                 </IconButton>
             </div>
+
             {
                 isAdmin
-                    ? <nav className="flex flex-col p-4 space-y-2">
+                    ? <nav className="absolute w-full flex flex-col p-4 space-y-2 z-6">
                         <div className="p-2 rounded transition duration-150"
                             onClick={handleAdminLogin}>
                             <p className="text-gray-600 hover:bg-gray-100">
@@ -121,7 +130,7 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, onClose }) => {
                             Logout
                         </Button>
                     </nav>
-                    : <nav className="flex flex-col p-4 space-y-2">
+                    : <nav className="absolute  w-full flex flex-col p-4 space-y-2 z-6">
                         <div className="p-2 rounded transition duration-150"
                             onClick={handleHomeClick}>
                             <p className="font-medium text-gray-600 hover:bg-gray-100">Home Page</p>
@@ -143,12 +152,6 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, onClose }) => {
                         </div>
                     </nav>
             }
-
-            <div className="absolute bottom-0 w-full flex justify-center items-end opacity-30">
-                <img className="w-full object-contain"
-                    src={LOGO}
-                    alt="." />
-            </div>
         </Box>
     </div>);
 };
