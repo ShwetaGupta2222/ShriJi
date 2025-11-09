@@ -13,11 +13,11 @@ interface SliderCardProps {
 
 const SliderCard: React.FC<SliderCardProps> = ({ item }) => {
     return (
-        <div className="p-2 bg-purple-50 rounded-lg">
+        <div className="p-2 h-fit bg-purple-100 rounded-lg overflow-hidden">
             <img
                 src={item.imgUrl}
                 alt="Slider Icon"
-                className="w-full h-full object-contain mx-auto"
+                className="w-full h-[200px] object-contain mx-auto border-1"
                 onError={(e) => {
                     const target = e.target as HTMLImageElement;
                     target.src = "https://placehold.co/40x40/5b21b6/ffffff?text=I";
@@ -27,7 +27,7 @@ const SliderCard: React.FC<SliderCardProps> = ({ item }) => {
             <p className="text-center mt-2 text-purple-800 font-medium">{item.name}</p>
         </div>
     );
-};
+};  
 
 const EMPTY_SLIDER_ITEM: SliderDetails = {
     id: '',
@@ -105,13 +105,13 @@ export const EditSliders: React.FC<EmptyProps> = ({ }) => {
 
     return (
         <div className="w-full h-full">
-            <div className="bg-black/50 w-full h-full p-10 flex flex-col md:flex-row gap-8">
+            <div className="bg-black/50 w-full h-full p-5 md:p-10 flex flex-col md:flex-row gap-6 md:gap-8">
                 <Box className="md:pt-16 p-4 bg-white rounded-xl md:rounded-b-xl shadow-2xl w-full md:w-1/4" component="form"
                     onSubmit={handleSubmit}> {
                     }
                     <h3 className="text-xl font-bold mb-6 text-center text-gray-800">Add Slider</h3>
                     <div className="flex flex-col gap-2">
-                        <div className="flex items-center gap-1 p-1 border rounded-lg bg-gray-50">
+                        <div className="flex items-center justify-center gap-1 p-1 border rounded-lg bg-gray-50">
                             <input accept="image/*"
                                 style={
                                     { display: 'none' }
@@ -123,7 +123,7 @@ export const EditSliders: React.FC<EmptyProps> = ({ }) => {
                                 disabled={isLoading} />
                             <label htmlFor="upload-button-png">
                                 {formData.imgUrl
-                                ?<img src={formData.imgUrl}/>
+                                ?<img className="h-[180px] object-contain" src={formData.imgUrl}/>
                                 :<Button variant="outlined"
                                     color={
                                         "secondary"

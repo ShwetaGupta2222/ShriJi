@@ -1,19 +1,19 @@
 import type { CategoryOption, FoodItem, FoodTag, SliderDetails } from "../utils/Models";
 import foodItemsData from "../data/foodItem1.json"
 import categoriesData from "../data/category.json"
-// import tagsData from "../data/tags.json"
-// import sliderDetailsData from "../data/sliderImages.json"
+import tagsData from "../data/tags.json"
+import sliderDetailsData from "../data/sliderImages.json"
 import { createContext, useContext, useEffect, useState, type ReactNode } from "react";
 
 export const initialFoodItems: FoodItem[] = foodItemsData?.data;
 export const initialCategories: CategoryOption[] = categoriesData?.data;
-// export const initialTags: FoodTag[] = tagsData?.data;
-// export const initialSliderDetails: SliderDetails[] = sliderDetailsData?.data;
+export const initialTags: FoodTag[] = tagsData?.data;
+export const initialSliderDetails: SliderDetails[] = sliderDetailsData?.data;
 
 // export const initialFoodItems: FoodItem[] = [];
 // export const initialCategories: CategoryOption[] = [];
-export const initialTags: FoodTag[] = [];
-export const initialSliderDetails: SliderDetails[] = [];
+// export const initialTags: FoodTag[] = [];
+// export const initialSliderDetails: SliderDetails[] = [];
 
 interface DataContextType {
     foodItems: FoodItem[];

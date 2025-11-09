@@ -3,7 +3,7 @@
         {
             "id":"1",
              "name":"Daily Combo Deals",
-             "imgUrl": "src/assets/sliderImages/slider1.jpg",
+             "imgUrl": "src/assets/logo.png",
              "position": 1
              },
             {
@@ -11,18 +11,6 @@
              "name":"50% Off Selected Pizzas",
              "imgUrl": "src/assets/sliderImages/slider2.jpg",
              "position": 2
-             },
-            {
-            "id":"3",
-             "name":"New Late Night Menu",
-             "imgUrl": "src/assets/sliderImages/slider3.jpg",
-             "position": 3
-             },
-            {
-            "id":"4",
-             "name":"Free Delivery on $20+",
-             "imgUrl": "src/assets/sliderImages/slider4.jpg",
-             "position": 4
              }
     ]
 }
