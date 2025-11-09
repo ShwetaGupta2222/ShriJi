@@ -115,6 +115,7 @@ const MenuToolBar: React.FC<EmptyProps> = () => {
                 return Promise.resolve(null);
             }
         });
+        
         try {
             await Promise.all(updatePromises);
             showSnackbar("Successfully set timing for all selected items.", 'success');

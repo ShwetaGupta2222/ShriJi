@@ -1,12 +1,23 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, Typography, Avatar } from '@mui/material';
 import LocalCafeIcon from '@mui/icons-material/LocalCafe';
 import PersonIcon from '@mui/icons-material/Person';
+import { useNavigate } from 'react-router-dom';
+import { useAdminData } from '../../context/admin/AdminContext';
 
 const AboutUsPage: React.FC = () => {
     const shopPhotoSrc = "/shriji-cafe-shop.jpg";
     const ownerPhotoSrc = "/shriji-cafe-owner.jpg";
     const ownerName = "Ms. Anaya Sharma";
+    
+    const navigate = useNavigate();
+    const {isAdmin} = useAdminData();
+    useEffect(()=>{
+       if(isAdmin){
+        navigate("/");
+       }
+    },[])
+
     return (<div className="min-h-screen bg-[#ecebeb] flex flex-col items-center pb-8">
         <div className="w-full max-w-md px-4 mt-6 space-y-6">
             <Typography variant="h5" component="h1" className="pl-2 font-bold text-gray-800 text-3xl">

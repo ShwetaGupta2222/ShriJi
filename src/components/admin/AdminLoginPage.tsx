@@ -12,9 +12,11 @@ export const AdminLoginPage: React.FC<EmptyProps> = ({ }) => {
     const [showPassword, setShowPassword] = useState(false);
     const [isLoading, setIsLoading] = useState<boolean>(false);
     const [validationErrors, setValidationErrors] = useState<LoginFormErrors>({});
+
     const handleClickShowPassword = () => {
         setShowPassword(prev => !prev);
     };
+    
     const [formData, setFormData] = useState<LoginFormData>({ userId: '', password: '' });
     const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {
         const { name, value } = e.target;
@@ -29,6 +31,7 @@ export const AdminLoginPage: React.FC<EmptyProps> = ({ }) => {
             }));
         }
     };
+
     const validateCategoryForm = useCallback((data: LoginFormData): LoginFormErrors => {
         const errors: LoginFormErrors = {};
         if (!data.userId.trim()) {
@@ -39,6 +42,7 @@ export const AdminLoginPage: React.FC<EmptyProps> = ({ }) => {
         }
         return errors;
     }, []);
+
     const handleSubmit = async (e: React.FormEvent) => {
         e.preventDefault();
         const errors = validateCategoryForm(formData);

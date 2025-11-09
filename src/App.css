@@ -189,6 +189,7 @@ body {
     align-items: center;
     color: #e5e7eb;
     font-size: 8rem;
+    border-radius:8px;
     box-shadow:
         0 0 20px rgba(72, 78, 81, 0.4),
         0 0 50px rgba(35, 36, 37, 0.2);
@@ -216,7 +217,7 @@ body {
 @keyframes glowPulse {
     0%,
     100% {
-        box-shadow: 0 0 15px rgba(21, 22, 22, 0.4), 0 0 40px rgba(71, 182, 255, 0.2);
+        box-shadow: 0 0 25px rgba(21, 22, 22, 0.4), 0 0 40px rgba(71, 182, 255, 0.2);
     }
 
     50% {

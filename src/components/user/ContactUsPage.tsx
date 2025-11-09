@@ -1,16 +1,26 @@
-import React from 'react';
+import React, { useEffect } from 'react';
 import { Card, CardContent, Typography } from '@mui/material';
 import PhoneIcon from '@mui/icons-material/Phone';
 import WhatsAppIcon from '@mui/icons-material/WhatsApp';
 import InstagramIcon from '@mui/icons-material/Instagram';
 import LocationOnIcon from '@mui/icons-material/LocationOn';
 import HandshakeIcon from '@mui/icons-material/Handshake';
+import { useNavigate } from 'react-router-dom';
+import { useAdminData } from '../../context/admin/AdminContext';
 
 const ContactUsPage: React.FC = () => {
     const phoneNumber = "+91 73807 47118";
     const instagramHandle = "@TheShriJiCafeOfficial";
     const instagramUrl = "https://lnkd.in/gwJVwaWf";
     const cafeAddress = "ShriJi Cafe, Near Khoyamandi, Tarnanganj Kalpi 285204 , District Jalaun";
+
+    const navigate = useNavigate();
+    const {isAdmin} = useAdminData();
+    useEffect(()=>{
+       if(isAdmin){
+        navigate("/");
+       }
+    },[])
 
     return (<div className="min-h-screen bg-[#ecebeb] flex flex-col items-center pb-8 animate-dialog-in">
         <div className="w-full max-w-md px-4 mt-6 space-y-6">

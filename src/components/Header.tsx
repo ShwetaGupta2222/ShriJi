@@ -1,9 +1,8 @@
 import { useState } from "react";
 import { useNavigate } from "react-router-dom";
-import logo from "../assets/logo.png"
 import Navbar from "./Navbar";
 import Burger from "./Burger";
-import { REORDER_ICON } from "../utils/Constants";
+import { LOGO, REORDER_ICON } from "../utils/Constants";
 import { useGroupEditData } from "../context/admin/GroupEditContext";
 import { useAdminData } from "../context/admin/AdminContext";
 
@@ -21,7 +20,7 @@ function Header() {
         <div className='flex px-2 h-full'>
             <div className="w-10 h-full" onClick={
                 () => navigate("")
-            }><img src={logo}
+            }><img src={LOGO}
                 className='h-full w-full object-contain' />
             </div>
             <div className='h-full w-full ml-2 flex flex-col justify-center items-start'>

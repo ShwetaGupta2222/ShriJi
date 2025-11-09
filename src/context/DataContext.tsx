@@ -1,5 +1,5 @@
 import type { CategoryOption, FoodItem, FoodTag, SliderDetails } from "../utils/Models";
-// import foodItemsData from "../data/foodItem.json"
+// import foodItemsData from "../data/foodItem1.json"
 // import categoriesData from "../data/category.json"
 // import tagsData from "../data/tags.json"
 // import sliderDetailsData from "../data/sliderImages.json"
@@ -18,26 +18,28 @@ export const initialSliderDetails: SliderDetails[] = [];
 interface DataContextType {
     foodItems: FoodItem[];
     setFoodItems: (list: FoodItem[]) => void;
+    allFoodItems: FoodItem[];
+    setAllFoodItems: (list: FoodItem[]) => void;
     categories: CategoryOption[];
     setCategories: (list: CategoryOption[]) => void;
     tags: FoodTag[];
     setTags: (list: FoodTag[]) => void;
     sliderDetails: SliderDetails[];
     setSliderDetails: (list: SliderDetails[]) => void;
-    foodItemsMap: Map<string,
-        FoodItem>;
+    foodItemsMap: Map<string,FoodItem>;
     setFoodItemsMap: (map: Map<string, FoodItem>) => void;
+    overallNoData:()=>boolean;
 }
 export const DataContext = createContext<DataContextType | undefined>(undefined);
 interface DataProviderProps {
     children: ReactNode;
 }
 export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
-    const [foodItems, setFoodItems] = useState<FoodItem[]>(initialFoodItems);
+    const [allFoodItems, setAllFoodItems] = useState<FoodItem[]>(initialFoodItems);
     const [tags, setTags] = useState<FoodTag[]>(initialTags);
     const [sliderDetails, setSliderDetails] = useState<SliderDetails[]>(initialSliderDetails);
     const [foodItemsMap, setFoodItemsMap] = useState<Map<string, FoodItem>>(new Map());
-
+    const [foodItems, setFoodItems] = useState<FoodItem[]>([]);
     // const [rawCategories, setRawCategories] = useState<CategoryOption[]>(initialCategories);
     const [categories, setCategories] = useState<CategoryOption[]>(initialCategories?.sort((a, b) => {
         const posA = a.position ?? Number.MAX_SAFE_INTEGER;
@@ -49,15 +51,25 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
     useEffect(() => {
         const newMap = new Map<string,
             FoodItem>();
-        foodItems.forEach(item => {
+        allFoodItems.forEach(item => {
             newMap.set(item.id, item);
         });
         setFoodItemsMap(newMap);
-    }, [foodItems]);
+    }, [allFoodItems]);
+
+    const overallNoData = () => {
+        return allFoodItems.length===0;
+    }
+
+    const noDataForCategory = () => {
+        return foodItems.length === 0;
+    }
 
     const contextValue: DataContextType = {
         foodItems,
         setFoodItems,
+        allFoodItems,
+        setAllFoodItems,
         categories,
         setCategories,
         tags,
@@ -65,7 +77,8 @@ export const DataProvider: React.FC<DataProviderProps> = ({ children }) => {
         sliderDetails,
         setSliderDetails,
         foodItemsMap,
-        setFoodItemsMap
+        setFoodItemsMap,
+        overallNoData
     };
     return (<DataContext.Provider value={contextValue}> {children} </DataContext.Provider>);
 };

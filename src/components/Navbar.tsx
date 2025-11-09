@@ -7,12 +7,12 @@ import {
 } from "@mui/material";
 import CloseIcon from '@mui/icons-material/Close';
 import EditIcon from '@mui/icons-material/Edit';
-// import logo from "../assets/logo.png";
 import { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
 import { useAdminData } from "../context/admin/AdminContext";
 import { useSnackbar } from "../context/SnackbarContext";
 import { OperationStatus } from "../utils/Models";
+import { LOGO } from "../utils/Constants";
 
 interface NavbarProps {
     isOpen: boolean;
@@ -143,10 +143,11 @@ const Navbar: React.FC<NavbarProps> = ({ isOpen, onClose }) => {
                         </div>
                     </nav>
             }
-            <div className="absolute bottom-0 w-full flex justify-center items-end opacity-30 z-[-1]">
+
+            <div className="absolute bottom-0 w-full flex justify-center items-end opacity-30">
                 <img className="w-full object-contain"
-                    src={""}
-                    alt="" />
+                    src={LOGO}
+                    alt="." />
             </div>
         </Box>
     </div>);

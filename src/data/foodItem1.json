@@ -1,0 +1,88 @@
+{
+    "data":[
+        {
+            "id": "item-1",
+            "name": "Classic Pepperoni Pizza",
+            "description": "Classic Neapolitan crust, rich tomato sauce, mozzarella, and spicy pepperoni.",
+            "price": 450,
+            "category": "Pizza",
+            "likes": 120,
+            "tag": "Best Seller",
+            "position": 1,
+            "imgUrl": "src/assets/burger.jpg",
+            "available": true,
+            "availableFrom": "00:00",
+            "availableTo": "03:00"
+            },
+           {
+            "id": "item-2",
+            "name": "Deep-Dish Veggie Pizza",
+            "description": "Thick Chicago-style crust loaded with bell peppers, mushrooms, and olives.",
+            "price": 500,
+            "category": "Pizza",
+            "likes": 85,
+            "tag": null,
+            "position": 2,
+            "imgUrl": "src/assets/foodImages/item-2.jpeg",
+            "available": false,
+            "availableFrom": "12:00",
+            "availableTo": "21:00"
+            },
+           {
+            "id": "item-3",
+            "name": "Jalapeño Popper Pizza",
+            "description": "Cream cheese base, jalapeños, bacon bits, and cheddar cheese.",
+            "price": 480,
+            "category": "Pizza",
+            "likes": 95,
+            "tag": "Spicy 🔥",
+            "position": 3,
+            "imgUrl": "src/assets/foodImages/item-3.jpeg",
+            "available": false,
+            "availableFrom": "18:00",
+            "availableTo": "01:00"
+            },
+           {
+            "id": "item-4",
+            "name": "Signature Smash Burger",
+            "description": "Two smashed beef patties, American cheese, grilled onions, and secret sauce.",
+            "price": 380,
+            "category": "Burgers",
+            "likes": 150,
+            "tag": "Best Seller",
+            "position": 4,
+            "imgUrl": "src/assets/foodImages/item-4.jpeg",
+            "available": false,
+            "availableFrom": "11:30",
+            "availableTo": "23:00"
+            },
+           {
+            "id": "item-5",
+            "name": "Crispy Chicken Sandwich",
+            "description": "Southern-style fried chicken breast with coleslaw and pickles on a brioche bun.",
+            "price": 350,
+            "category": "Burgers",
+            "likes": 110,
+            "tag": "New",
+            "position": 5,
+            "imgUrl": "src/assets/foodImages/item-5.jpeg",
+            "available": false,
+            "availableFrom": "12:00",
+            "availableTo": "00:00"
+            },
+           {
+            "id": "item-6",
+            "name": "Double Cheese Bacon Burger",
+            "description": "Classic beef patty with double bacon and cheese.",
+            "price": 410,
+            "category": "Burgers",
+            "likes": 90,
+            "tag": null,
+            "position": 6,
+            "imgUrl": "src/assets/foodImages/item-6.jpeg",
+            "available": false,
+            "availableFrom": "11:00",
+            "availableTo": "02:00"
+            }
+        ]
+    }

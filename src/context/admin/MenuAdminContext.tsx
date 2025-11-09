@@ -24,15 +24,15 @@ interface MenuAdminProviderProps {
 const delay = (ms: number) => new Promise(resolve => setTimeout(resolve, ms));
 
 export const MenuAdminProvider: React.FC<MenuAdminProviderProps> = ({ children }) => {
-    const { foodItems, setFoodItems, categories, setCategories, tags, setTags, sliderDetails, setSliderDetails, setFoodItemsMap } = useData();
-   
+    const { allFoodItems, setAllFoodItems, categories, setCategories, tags, setTags, sliderDetails, setSliderDetails, setFoodItemsMap } = useData();
+
     useEffect(() => {
         const newMap = new Map<string, FoodItem>();
-        foodItems.forEach(item => {
+        allFoodItems.forEach(item => {
             newMap.set(item.id, item);
         });
         setFoodItemsMap(newMap);
-    }, [foodItems]);
+    }, [allFoodItems]);
 
     const updateItemsLogic = async <T extends { id: string }>(
         prevItems: T[],
@@ -66,42 +66,52 @@ export const MenuAdminProvider: React.FC<MenuAdminProviderProps> = ({ children }
         setter(() => [...prevItems, itemWithId]);
         return { status: OperationStatus.SUCCESS, message: `New ${itemName} '${newName || newId}' added.`, newId: newId };
     };
+
     const deleteItemsLogic = async <T extends { id: string }>(
-        currentItems: T[],
         itemId: string,
         setter: React.Dispatch<React.SetStateAction<T[]>>,
         itemName: string
     ): Promise<OperationResult> => {
-        await delay(2000);
-        const initialLength = currentItems.length;
-        const newItems = currentItems.filter(item => item.id !== itemId);
+        await delay(2000); 
+        let deletedSuccessfully = false;
 
-        if (newItems.length === initialLength) {
+        setter(prevItems => {
+            const initialLength = prevItems.length;
+            const newItems = prevItems.filter(item => item.id !== itemId);
+
+            if (newItems.length < initialLength) {
+                deletedSuccessfully = true;
+                return newItems;
+            }
+            return prevItems;
+        });
+
+        if (deletedSuccessfully) {
+            return { status: OperationStatus.SUCCESS, message: `${itemName} with ID ${itemId} successfully deleted.` };
+        } else {
             return { status: OperationStatus.FAILURE, message: `${itemName} with ID ${itemId} not found.` };
         }
-
-        setter(newItems);
-        return { status: OperationStatus.SUCCESS, message: `${itemName} with ID ${itemId} successfully deleted.` };
     };
 
     const deleteFoodItem = async (id: string): Promise<OperationResult> => {
-        return await deleteItemsLogic(foodItems, id, setFoodItems as React.Dispatch<React.SetStateAction<FoodItem[]>>, "Food Item");
+        console.log("deleting " + id)
+        return await deleteItemsLogic(id, setAllFoodItems as React.Dispatch<React.SetStateAction<FoodItem[]>>, "Food Item");
     };
 
     const deleteCategory = async (id: string): Promise<OperationResult> => {
-        return await deleteItemsLogic(categories, id, setCategories as React.Dispatch<React.SetStateAction<CategoryOption[]>>, "Category");
+        return await deleteItemsLogic( id, setCategories as React.Dispatch<React.SetStateAction<CategoryOption[]>>, "Category");
     };
 
     const deleteTag = async (id: string): Promise<OperationResult> => {
-        return await deleteItemsLogic(tags, id, setTags as React.Dispatch<React.SetStateAction<FoodTag[]>>, "Food Tag");
+        return await deleteItemsLogic( id, setTags as React.Dispatch<React.SetStateAction<FoodTag[]>>, "Food Tag");
     };
 
     const deleteSliderDetail = async (id: string): Promise<OperationResult> => {
-        return await deleteItemsLogic(sliderDetails, id, setSliderDetails as React.Dispatch<React.SetStateAction<SliderDetails[]>>, "Slider Detail");
+        return await deleteItemsLogic( id, setSliderDetails as React.Dispatch<React.SetStateAction<SliderDetails[]>>, "Slider Detail");
     };
 
     const updateFoodItems = async (newItem: FoodItem): Promise<OperationResult> => {
-        return await updateItemsLogic(foodItems, newItem, setFoodItems as React.Dispatch<React.SetStateAction<FoodItem[]>>, "Food Item");
+        return await updateItemsLogic(allFoodItems, newItem, setAllFoodItems as React.Dispatch<React.SetStateAction<FoodItem[]>>, "Food Item");
     };
 
     const updateCategories = async (newCategory: CategoryOption): Promise<OperationResult> => {

@@ -1,5 +1,5 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
-import type { FoodItem} from "../utils/Models";
+import type { FoodItem } from "../utils/Models";
 import { useData } from "./DataContext";
 
 interface FoodGridContextType {
@@ -37,9 +37,10 @@ export const FoodGridProvider: React.FC<FoodGridProviderProps> = ({ children }) 
         currentItem,
         setCurrentItem,
         onShowDetailClicked
-};
-return (<FoodGridContext.Provider value={contextValue}> {children} </FoodGridContext.Provider>);
     };
+
+    return (<FoodGridContext.Provider value={contextValue}> {children} </FoodGridContext.Provider>);
+};
 
 
 export const useFoodGridData = () => {

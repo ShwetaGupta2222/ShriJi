@@ -9,7 +9,7 @@ const CategorySelector: React.FC<CategorySelectorProps> = ({}) => {
     const { categories } = useData();
     const { activeCategory, setActiveCategory } = useFoodGridData();
     const categoryData: CategoryOption[] = categories;
-    useEffect(() => { setActiveCategory(categoryData[0].name) }, [])
+    useEffect(() => { if(categoryData.length)setActiveCategory(categoryData[0].name) }, [])
     const handleCategoryClick = (categoryName: string) => { setActiveCategory(categoryName); };
 
     return (

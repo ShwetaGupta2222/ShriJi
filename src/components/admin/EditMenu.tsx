@@ -1,7 +1,9 @@
+import { Typography } from "@mui/material";
 import { useAdminData } from "../../context/admin/AdminContext";
 import { useGroupEditData } from "../../context/admin/GroupEditContext";
 import { useMenuAdminData } from "../../context/admin/MenuAdminContext";
 import { useSingleEditData } from "../../context/admin/SingleEditContext";
+import { useData } from "../../context/DataContext";
 import { useFoodGridData } from "../../context/FoodGridContext";
 import { useSnackbar } from "../../context/SnackbarContext";
 import { OperationStatus, type EmptyProps, type FoodItem } from "../../utils/Models";
@@ -15,6 +17,7 @@ const EditMenu: React.FC<EmptyProps> = ({ }) => {
     const { showSnackbar } = useSnackbar();
     const { isAdmin } = useAdminData();
     const { currentItem } = useFoodGridData()
+
     const {
         showCheckbox,
         setShowCheckbox,
@@ -31,6 +34,7 @@ const EditMenu: React.FC<EmptyProps> = ({ }) => {
         isDisableClicked,
         setIsDisableClicked
     } = useSingleEditData();
+    const { overallNoData } = useData();
 
     const onEditFoodItem = async (item: FoodItem) => {
         try {
@@ -86,10 +90,14 @@ const EditMenu: React.FC<EmptyProps> = ({ }) => {
         setShowMenubar(!showMenubar);
     })
 
+
+    const noData: boolean = overallNoData()
     return (<div className="min-w-[100vw] w-full">
-
-
         <CategorySelector />
+        {noData &&
+            <div className='w-full  h-20 md:h-40 flex items-center justify-center animate-dialog-in'>
+                <Typography variant="body1" align="center" color="text.secondary"> No Food Items are added in the Menu. </Typography>
+            </div>}
         <FoodItemGrid />
         {
             isAdmin && <div onClick={
@@ -155,6 +163,7 @@ const EditMenu: React.FC<EmptyProps> = ({ }) => {
                 } **${currentItem?.name
                 }** from the Menu?`
             } />
+
 
     </div>
 

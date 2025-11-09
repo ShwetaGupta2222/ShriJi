@@ -55,7 +55,7 @@ export const GroupEditProvider: React.FC < GroupEditProviderProps > = ({children
     }, [showCheckbox])
 
     useEffect(() => {
-        // console.log(selectedFoodItems)
+        console.log(selectedFoodItems)
     }, [selectedFoodItems])
 
     const selectFoodItem = (id : string) => {

@@ -16,7 +16,7 @@ function AdminHomePage() {
     const {currentTab,setCurrentTab} = useAdminData();
     const {setReorderEnable} = useGroupEditData();
     const roles = Object.entries(AdminRoles);
-    useEffect(()=>{setCurrentTab(Object.keys(AdminRoles)[0])},[])
+    useEffect(()=>{setCurrentTab(Object.keys(AdminRoles)[2])},[])
 
     const onAddItemFormSubmit = async (item: FoodItem) => {
         try {

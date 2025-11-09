@@ -1,7 +1,7 @@
-import React, { useState } from 'react';
+import React, { useEffect, useState } from 'react';
 import FavoriteBorderIcon from '@mui/icons-material/FavoriteBorder';
 import FavoriteIcon from '@mui/icons-material/Favorite';
-import { Box } from '@mui/material';
+import { Box, Typography } from '@mui/material';
 import VisibilityOffIcon from '@mui/icons-material/VisibilityOff';
 import VisibilityIcon from '@mui/icons-material/Visibility';
 import AccessTimeIcon from '@mui/icons-material/AccessTime';
@@ -166,9 +166,20 @@ export const FoodItemCard: React.FC<FoodItemCardProps> = ({ item }) => {
 };
 
 const FoodItemGrid: React.FC<EmptyProps> = ({ }) => {
-    const { foodItems, setFoodItems } = useData();
+    const { allFoodItems, foodItems, setFoodItems, overallNoData } = useData();
     const { activeCategory } = useFoodGridData();
     const { reorderEnable } = useGroupEditData();
+
+    useEffect(() => {
+        const newArray: FoodItem[] = [];
+        allFoodItems.forEach(item => {
+            if (item.category === activeCategory) {
+                newArray.push(item);
+            }
+        });
+        setFoodItems(newArray);
+        console.log(activeCategory, newArray, allFoodItems)
+    }, [activeCategory, allFoodItems]);
 
     const foodItemsData: FoodItem[] = foodItems.sort((a, b) => {
         if (a.available !== b.available) {
@@ -184,18 +195,24 @@ const FoodItemGrid: React.FC<EmptyProps> = ({ }) => {
         return posA - posB;
     });
 
+    const noData: boolean = overallNoData()
     return (
         <div className="p-8 min-h-screen bg-[#ececec]">
+            {!noData && foodItems.length === 0 &&
+                <div className='w-full  h-full flex items-center justify-center animate-dialog-in'>
+                    <Typography variant="body1" align="center" color="text.secondary"> No Item for this category. </Typography>
+                </div>
+            }
             <div className="grid grid-cols-2 md:grid-cols-3 lg:grid-cols-5 gap-8 max-w-7xl mx-auto">
                 {reorderEnable
                     ? <GenericSortableList items={foodItems} setItems={setFoodItems} Comp={FoodItemCard} listTitle="" />
                     : (
-                        foodItemsData.map(item => ((activeCategory === undefined || item.category === activeCategory) &&
+                        foodItemsData.map(item =>
                             <FoodItemCard
                                 key={item.id}
                                 item={item}
                             />
-                        ))
+                        )
                     )
                 }
             </div>

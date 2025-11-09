@@ -1,5 +1,6 @@
 import { createContext, useContext, useState, type ReactNode } from "react";
 import { OperationStatus, type LoginFormData, type OperationResult } from "../../utils/Models";
+import { useNavigate } from "react-router-dom";
 
 interface AdminContextType {
     isAdmin: boolean,
@@ -30,12 +31,14 @@ export const AdminProvider: React.FC < AdminProviderProps > = ({children}) => {
     const [isAdmin, setIsAdmin] = useState < boolean > (true);
     const [showAdminLoginPage, setShowAdminLoginPage] = useState < boolean > (false);
     const [currentTab,setCurrentTab] = useState<string>("");
+    const navigate = useNavigate();
 
     const handleAdminLogin = async (formData : LoginFormData): Promise < OperationResult > => {
         await delay(2000);
         if (formData.userId === 'admin' && formData.password === '1234') {
             setIsAdmin(true)
             setShowAdminLoginPage(false);
+            navigate("/");
             return {status: OperationStatus.SUCCESS, message: 'Login Successful! Redirecting...'};
         } else {
             return {status: OperationStatus.FAILURE, message: 'Login Failed: Invalid credentials.'};
@@ -45,6 +48,7 @@ export const AdminProvider: React.FC < AdminProviderProps > = ({children}) => {
     const handleAdminLogOut = () : OperationResult => {
         try {
             setIsAdmin(false);
+            navigate("/");
             return {status: OperationStatus.SUCCESS, message: 'Admin Logout Successful!'};
         } catch (e) {
             return {status: OperationStatus.FAILURE, message: 'Facing some error while logout!'};
