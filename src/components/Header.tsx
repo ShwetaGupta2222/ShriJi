@@ -2,9 +2,10 @@ import { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import Navbar from "./Navbar";
 import Burger from "./Burger";
-import { LOGO, REORDER_ICON } from "../utils/Constants";
+import {  REORDER_ICON } from "../utils/Constants";
 import { useGroupEditData } from "../context/admin/GroupEditContext";
 import { useAdminData } from "../context/admin/AdminContext";
+import LOGO from "../assets/logo.png"
 
 function Header() {
     let navigate = useNavigate();

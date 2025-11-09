@@ -12,7 +12,7 @@ import { useNavigate } from "react-router-dom";
 import { useAdminData } from "../context/admin/AdminContext";
 import { useSnackbar } from "../context/SnackbarContext";
 import { OperationStatus } from "../utils/Models";
-import { LOGO } from "../utils/Constants";
+import LOGO from "../assets/logo.png"
 
 interface NavbarProps {
     isOpen: boolean;
