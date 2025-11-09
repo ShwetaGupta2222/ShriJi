@@ -31,9 +31,11 @@ export const useCart = () => {
     }
     return context;
 };
+
 interface CartProviderProps {
     children: ReactNode;
 }
+
 export const CartProvider: React.FC<CartProviderProps> = ({ children }) => {
     const { foodItemsMap } = useData();
     const [showActionButtons, setShowActionButtons] = useState<boolean>(false)

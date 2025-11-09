@@ -108,7 +108,7 @@ const CartPage: React.FC<EmptyProps> = ({ }) => {
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>
                         <Typography variant="h6" color="text.secondary"> Subtotal
                         </Typography>
-                        <Typography variant="h6" fontWeight="medium"> ₹{subTotal.toFixed(0)}
+                        <Typography variant="h6" fontWeight="medium"> ₹{subTotal}
                         </Typography>
                     </Box>
                     <Box sx={{ display: 'flex', justifyContent: 'space-between' }}>

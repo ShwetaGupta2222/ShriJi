@@ -24,7 +24,7 @@
             "tag": null,
             "position": 2,
             "imgUrl": "src/assets/foodImages/item-2.jpeg",
-            "available": false,
+            "available": true,
             "availableFrom": "12:00",
             "availableTo": "21:00"
             },
@@ -38,7 +38,7 @@
             "tag": "Spicy 🔥",
             "position": 3,
             "imgUrl": "src/assets/foodImages/item-3.jpeg",
-            "available": false,
+            "available": true,
             "availableFrom": "18:00",
             "availableTo": "01:00"
             },
@@ -52,7 +52,7 @@
             "tag": "Best Seller",
             "position": 4,
             "imgUrl": "src/assets/foodImages/item-4.jpeg",
-            "available": false,
+            "available": true,
             "availableFrom": "11:30",
             "availableTo": "23:00"
             },
@@ -66,7 +66,7 @@
             "tag": "New",
             "position": 5,
             "imgUrl": "src/assets/foodImages/item-5.jpeg",
-            "available": false,
+            "available": true,
             "availableFrom": "12:00",
             "availableTo": "00:00"
             },
